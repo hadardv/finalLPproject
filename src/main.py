@@ -1,29 +1,23 @@
-from lexer import Lexer
-from parser import Parser
+from src.lexer import Lexer
+from src.parser import Parser
 
 
 def main():
-    # Get user input
-    user_input = input("Enter a mathematical expression: ")
 
-    # Create lexer and generate tokens
+    user_input = input("Enter a mathematical expression: ")
     lexer = Lexer(user_input)
     tokens = list(lexer.tokenize())
-
-    # Print tokens for debugging (optional)
     print("Tokens:", tokens)
 
-    # Specify the path to your grammar file
     grammar_file = 'C:\\Users\\hadar\\PythonCourrse\\LPproject2\\grammar\\grammar.bnf'
-
-    # Create parser and parse the expression
     parser = Parser(tokens, grammar_file)
-    result = parser.parse()
 
-    # Print the parse tree
-    print("Parse Tree:")
-    print(result)
-
+    try:
+        result = parser.parse()
+        print("Parse Tree:")
+        print(parser.prettify_parse_tree(result))
+    except SyntaxError as e:
+        print(f"Parsing failed: {e}")
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,7 @@
-<expr> ::= <term> | <expr> '+' <term> | <expr> '-' <term>
-<term> ::= <factor> | <term> '*' <factor> | <term> '/' <factor>
-<factor> ::= <number> | '(' <expr> ')'
-<number> ::= NUMBER
+<program> ::= <statement>
+<statement> ::= <expression>
+<expression> ::= <term> | <expression> <binary_op> <term>
+<term> ::= <factor> | <term> <binary_op> <factor>
+<factor> ::= NUMBER | LPAREN <expression> RPAREN | <unary_op> <factor>
+<binary_op> ::= PLUS | MINUS | MULTIPLY | DIVIDE
+<unary_op> ::= PLUS | MINUS
